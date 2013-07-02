@@ -1,6 +1,8 @@
-package com.kenjih.main;
+package com.kenjih.connectfour.main.games;
 
 import java.util.Arrays;
+
+import com.kenjih.connectfour.main.players.*;
 
 public class Game {
 	private static final int ROW = 6;

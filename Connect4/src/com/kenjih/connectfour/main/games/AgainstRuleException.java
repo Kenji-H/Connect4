@@ -1,4 +1,4 @@
-package com.kenjih.main;
+package com.kenjih.connectfour.main.games;
 
 public class AgainstRuleException extends RuntimeException {
 

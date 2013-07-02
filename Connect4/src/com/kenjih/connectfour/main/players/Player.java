@@ -1,4 +1,4 @@
-package com.kenjih.main;
+package com.kenjih.connectfour.main.players;
 
 public abstract class Player {
 	protected static final int ROW = 6;
