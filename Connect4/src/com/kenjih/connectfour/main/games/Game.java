@@ -24,8 +24,8 @@ public class Game {
 		int p1Win = 0;
 		int p2Win = 0;
 		
-		Player player1 = Player.getInstance("com.kenjih.main.GreadyPlayer");
-		Player player2 = Player.getInstance("com.kenjih.main.HumanPlayer");
+		Player player1 = Player.getInstance("com.kenjih.connectfour.main.players.HumanPlayer");
+		Player player2 = Player.getInstance("com.kenjih.connectfour.main.players.MinMaxPlayer");
 		
 		for (int i = 0; i < 100; i++) {
 			Game game = null;
@@ -146,9 +146,6 @@ public class Game {
 
 	private void dispBoard(int turn) {
 		if (isDispBoardEnabled()) {
-			System.out.println("Turn: " + turn);
-			System.out.println(p1.getName() + ": " + p1.getStone());
-			System.out.println(p2.getName() + ": " + p2.getStone());
 			for (int i = 0; i < ROW; i++) {
 				for (int j = 0; j < COL; j++)
 					System.out.print(board[i][j]);
@@ -178,6 +175,9 @@ public class Game {
 					tmpBoard[k] = Arrays.copyOf(board[k], board[k].length);
 				
 				int column = p.getNextHand(tmpBoard);
+				if (isDispBoardEnabled())
+					System.out.println(p.getName() + "(" + p.getStone() + ") put a stone at colum " + column + ".");
+				
 				putStoneAt(column, stone);
 			} catch (AgainstRuleException e) {
 				System.out.println(p.getName() + ": " + e.getMessage());
