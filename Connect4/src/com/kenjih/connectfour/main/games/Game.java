@@ -24,10 +24,10 @@ public class Game {
 		int p1Win = 0;
 		int p2Win = 0;
 		
-		Player player1 = Player.getInstance("com.kenjih.connectfour.main.players.HumanPlayer");
+		Player player1 = Player.getInstance("com.kenjih.connectfour.main.players.SmartMinMaxPlayer");
 		Player player2 = Player.getInstance("com.kenjih.connectfour.main.players.MinMaxPlayer");
 		
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			Game game = null;
 			
 			if (i % 2 == 0)
@@ -46,7 +46,7 @@ public class Game {
 					++p2Win;
 					System.out.println(player2.getName() + " wins!!");
 				}
-			} else {
+			} else if (result == -1) {
 				if (i % 2 == 0) {
 					++p2Win;
 					System.out.println(player2.getName() + " wins!!");
@@ -55,6 +55,8 @@ public class Game {
 					++p1Win;
 					System.out.println(player1.getName() + " wins!!");
 				}
+			} else {
+				System.out.println("draw!!");
 			}
 		}
 		
