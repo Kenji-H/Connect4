@@ -22,11 +22,22 @@ public class SmartMinMaxPlayer extends Player {
 	
 	private int[] dfs(int turn) {
 		char cur = (turn % 2 == 0) ? getStone() : opponent(getStone());
-		
+				
 		// 相手の前の手で自分の負けが確定
 		if (winOf(opponent(cur), board))
 			return new int[] {-Integer.MAX_VALUE, -1};
 		
+		// 引き分け判定（※本処理は、勝敗判定の後に行うことに注意）
+		boolean tie = true;
+		for (int i = 0; i < COL; i++) {
+			if (board[0][i] == EMPTY) {
+				tie = false;
+				break;
+			}
+		}
+		if (tie)
+			return new int[] {0, -1};
+
 		// 探索終了
 		if (turn >= DEPTH) {
 			int val = evaluate(cur, board) - evaluate(opponent(cur), board);
