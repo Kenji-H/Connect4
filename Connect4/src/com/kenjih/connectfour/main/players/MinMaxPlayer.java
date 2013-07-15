@@ -2,19 +2,6 @@ package com.kenjih.connectfour.main.players;
 
 import java.util.Random;
 
-
-// TODO 以下バグ？
-/* 
- * Min Max Player(O) put a stone at colum 3.
- * .......
- * X....X.
- * O..O.O.
- * X.OOOX.
- * O.OXXX.
- * OOXXXO.
- * 
- */
-
 public class MinMaxPlayer extends Player {
 	
 	private final int DEPTH = 8;
