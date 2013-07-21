@@ -24,10 +24,10 @@ public class Game {
 		int p1Win = 0;
 		int p2Win = 0;
 		
-		Player player1 = Player.getInstance("com.kenjih.connectfour.main.players.SmartMinMaxPlayer");
+		Player player1 = Player.getInstance("com.kenjih.connectfour.main.players.AlphaBetaPlayer");
 		Player player2 = Player.getInstance("com.kenjih.connectfour.main.players.MinMaxPlayer");
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			Game game = null;
 			
 			if (i % 2 == 0)
