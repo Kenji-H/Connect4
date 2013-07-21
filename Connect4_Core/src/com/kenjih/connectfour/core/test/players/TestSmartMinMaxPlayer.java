@@ -1,4 +1,4 @@
-package com.kenjih.connectfour.test.players;
+package com.kenjih.connectfour.core.test.players;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kenjih.connectfour.main.players.Player;
-import com.kenjih.connectfour.main.players.SmartMinMaxPlayer;
+import com.kenjih.connectfour.core.players.Player;
+import com.kenjih.connectfour.core.players.SmartMinMaxPlayer;
 
 public class TestSmartMinMaxPlayer {
 	Player player;

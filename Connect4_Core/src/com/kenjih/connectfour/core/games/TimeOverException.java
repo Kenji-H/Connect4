@@ -1,4 +1,4 @@
-package com.kenjih.connectfour.main.games;
+package com.kenjih.connectfour.core.games;
 
 public class TimeOverException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package com.kenjih.connectfour.test.games;
+package com.kenjih.connectfour.core.test.games;
 
 import static org.junit.Assert.*;
 
@@ -9,8 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kenjih.connectfour.main.games.Game;
-import com.kenjih.connectfour.main.players.RandomPlayer;
+import com.kenjih.connectfour.core.games.Game;
+import com.kenjih.connectfour.core.players.RandomPlayer;
 
 public class TestGame {
 

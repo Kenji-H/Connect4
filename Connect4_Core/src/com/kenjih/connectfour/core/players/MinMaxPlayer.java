@@ -1,49 +1,61 @@
-package com.kenjih.connectfour.main.players;
+package com.kenjih.connectfour.core.players;
 
 import java.util.Random;
 
-public class GreadyPlayer extends Player {
+public class MinMaxPlayer extends Player {
 	
+	private final int DEPTH = 8;
+	
+	private char[][] board;
+		
 	@Override
 	public int getNextHand(char[][] board) {
-		char opponent = (getStone() == FIRST_STONE) ? SECOND_STONE : FIRST_STONE;
+		this.board = board;
+		int[] res = dfs(0);
+		if (res[0] == -1)
+			System.out.println("負けました");
+		return res[1];
+	}
+	
+	private char opponent(char c) {
+		return (c == FIRST_STONE) ? SECOND_STONE : FIRST_STONE;
+	}
 		
-		// 次の一手で勝てる場合は、勝ち手を指す
-		for (int j = 0; j < COL; j++) {
+	private int[] dfs(int turn) {
+		char cur = (turn % 2 == 0) ? getStone() : opponent(getStone());
+		
+		// 相手の前の手で自分の負けが確定
+		if (winOf(opponent(cur), board))
+			return new int[] {-1, -1};
+		
+		// 探索終了
+		if (turn >= DEPTH)
+			return new int[] {0, -1};
+		
+		int res = -2;
+		int move = 0;
+		int j = new Random().nextInt(COL);
+		for (int k = 0; k < COL; k++) {
+			if (++j >= COL)
+				j = 0;
 			int i = ROW - 1;
 			while (i >= 0 && board[i][j] != EMPTY)
 				--i;
 			if (i == -1)
 				continue;
 			
-			board[i][j] = getStone();
-			if (winOf(getStone(), board))
-				return j;
-			board[i][j] = EMPTY;			
-		}
-		
-		// 相手が次の一手で勝てる場合は、それを止める
-		for (int j = 0; j < COL; j++) {
-			int i = ROW - 1;
-			while (i >= 0 && board[i][j] != EMPTY)
-				--i;
-			if (i == -1)
-				continue;
-			
-			board[i][j] = opponent;
-			if (winOf(opponent, board))
-				return j;
-			board[i][j] = EMPTY;			
-		}
-		
-		Random rand = new Random();		
-		int column = -1;
-		for (;;) {
-			column = rand.nextInt(COL);
-			if (board[0][column] == EMPTY)
+			board[i][j] = cur;
+			int[] tmp = dfs(turn+1);
+			if (-tmp[0] > res) {
+				res = -tmp[0];
+				move = j;
+			}			
+			board[i][j] = EMPTY;
+			if (res == 1)
 				break;
 		}
-		return column;
+		
+		return new int[] {res, move};
 	}
 
 	private boolean winOf(char c, char[][] board) {
@@ -100,7 +112,7 @@ public class GreadyPlayer extends Player {
 	
 	@Override
 	public String getName() {
-		return "Gready Player";
+		return "Min Max Player";
 	}
 
 }

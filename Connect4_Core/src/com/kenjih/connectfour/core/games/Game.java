@@ -1,8 +1,8 @@
-package com.kenjih.connectfour.main.games;
+package com.kenjih.connectfour.core.games;
 
 import java.util.Arrays;
 
-import com.kenjih.connectfour.main.players.*;
+import com.kenjih.connectfour.core.players.*;
 
 public class Game {
 	private static final int ROW = 6;
@@ -16,55 +16,6 @@ public class Game {
 	private Player p1;
 	private Player p2;
 	
-	public static void main(String[] args) {
-		// TODO コマンド引数からplayerクラスの名前を取得してインスタンス化する
-		// TODO コマンド引数からゲーム数、visualizerオン/オフを切り替える
-		// TODO Swingでvisualizer作る
-		
-		int p1Win = 0;
-		int p2Win = 0;
-		
-		Player player1 = Player.getInstance("com.kenjih.connectfour.main.players.AlphaBetaPlayer");
-		Player player2 = Player.getInstance("com.kenjih.connectfour.main.players.MinMaxPlayer");
-		
-		for (int i = 0; i < 100; i++) {
-			Game game = null;
-			
-			if (i % 2 == 0)
-				game = new Game(player1, player2);
-			else
-				game = new Game(player2, player1);
-				
-			game.clearBoard();
-			int result = game.play();
-			if (result == 1) {
-				if (i % 2 == 0) {
-					++p1Win;
-					System.out.println(player1.getName() + " wins!!");
-				}
-				else {
-					++p2Win;
-					System.out.println(player2.getName() + " wins!!");
-				}
-			} else if (result == -1) {
-				if (i % 2 == 0) {
-					++p2Win;
-					System.out.println(player2.getName() + " wins!!");
-				}
-				else {
-					++p1Win;
-					System.out.println(player1.getName() + " wins!!");
-				}
-			} else {
-				System.out.println("draw!!");
-			}
-		}
-		
-		System.out.println();
-		System.out.println("----------------------------------");
-		System.out.println(player1.getName() + " won the game " + p1Win + " times.");
-		System.out.println(player2.getName() + " won the game " + p2Win + " times.");
-	}
 
 	public Game(Player player1, Player player2) {		
 		this.p1 = player1;
@@ -88,7 +39,7 @@ public class Game {
 		board[row][column] = stone;
 	}
 
-	private void clearBoard() {
+	public void clearBoard() {
 		for (int i = 0; i < ROW; i++)
 			for (int j = 0; j < COL; j++)
 				board[i][j] = EMPTY;

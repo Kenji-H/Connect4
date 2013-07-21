@@ -1,4 +1,4 @@
-package com.kenjih.connectfour.main.players;
+package com.kenjih.connectfour.core.players;
 
 import java.util.Scanner;
 
