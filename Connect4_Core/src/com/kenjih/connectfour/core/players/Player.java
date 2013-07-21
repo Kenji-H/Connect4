@@ -8,22 +8,16 @@ public abstract class Player {
 	protected static final char SECOND_STONE = 'X';
 	protected static final char EMPTY = '.';
 	protected char stone;
-	
+
 	@SuppressWarnings("rawtypes")
-	public static Player getInstance(String className) {
+	public static Player getInstance(String className)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException {
 		Player player = null;
-		
-		try {
-			Class clazz= Class.forName(className);
-			player = (Player) clazz.newInstance();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		
+
+		Class clazz = Class.forName(className);
+		player = (Player) clazz.newInstance();
+
 		return player;
 	}
 

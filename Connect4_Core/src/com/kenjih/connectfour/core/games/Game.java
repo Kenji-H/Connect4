@@ -15,11 +15,21 @@ public class Game {
 	private char[][] board = new char[ROW][COL];
 	private Player p1;
 	private Player p2;
-	
+	private boolean dispBoardEnabled;
 
 	public Game(Player player1, Player player2) {		
 		this.p1 = player1;
 		this.p2 = player2;
+		this.dispBoardEnabled = false;
+		
+		p1.setStone(FIRST_STONE);
+		p2.setStone(SECOND_STONE);
+	}
+
+	public Game(Player player1, Player player2, boolean dispModeFlg) {	
+		this.p1 = player1;
+		this.p2 = player2;
+		this.dispBoardEnabled = dispModeFlg;
 		
 		p1.setStone(FIRST_STONE);
 		p2.setStone(SECOND_STONE);
@@ -109,7 +119,7 @@ public class Game {
 	}
 	
 	private boolean isDispBoardEnabled() {
-		return true;
+		return dispBoardEnabled;
 	}
 	
 	
